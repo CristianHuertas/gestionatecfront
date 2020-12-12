@@ -16,29 +16,16 @@
           <th>Correo</th>
           <th>Detalle</th>
         </tr>
-        <tr>
-          <td>{{ database_clientes[0].documento }}</td>
-          <!--valores de la tabla-->
-          <td>{{ database_clientes[0].tipo_documento }}</td>
-          <td>{{ database_clientes[0].razon_social }}</td>
-          <td>{{ database_clientes[0].contacto }}</td>
-          <td>{{ database_clientes[0].telefono }}</td>
-          <td>{{ database_clientes[0].direccion }}</td>
-          <td>{{ database_clientes[0].ciudad }}</td>
-          <td>{{ database_clientes[0].correo }}</td>
-          <td>{{ database_clientes[0].detalle }}</td>
-        </tr>
-        <tr>
-          <td>{{ database_clientes[1].documento }}</td>
-          <!--valores de la tabla-->
-          <td>{{ database_clientes[1].tipo_documento }}</td>
-          <td>{{ database_clientes[1].razon_social }}</td>
-          <td>{{ database_clientes[1].contacto }}</td>
-          <td>{{ database_clientes[1].telefono }}</td>
-          <td>{{ database_clientes[1].direccion }}</td>
-          <td>{{ database_clientes[1].ciudad }}</td>
-          <td>{{ database_clientes[1].correo }}</td>
-          <td>{{ database_clientes[1].detalle }}</td>
+        <tr v-for="cliente in database_clientes">
+          <td>{{ cliente.documento }}</td>
+          <td>{{ cliente.tipo_documento }}</td>
+          <td>{{ cliente.razon_social }}</td>
+          <td>{{ cliente.contacto }}</td>
+          <td>{{ cliente.telefono }}</td>
+          <td>{{ cliente.direccion }}</td>
+          <td>{{ cliente.ciudad }}</td>
+          <td>{{ cliente.correo }}</td>
+          <td>{{ cliente.detalle }}</td>
         </tr>
       </table>
     </div>
@@ -49,36 +36,36 @@
 
 
 <script>
+import axios from "axios"
 export default {
   name: "Base_clientes",
   data: function () {
     return {
       database_clientes: [
         {
-          documento: 800433422,
-          tipo_documento: "NIT",
-          razon_social: "ÉXITO MEDELLIN",
-          contacto: "SANTIAGO MARTINEZ",
-          telefono: 3169161138,
-          direccion: "Calle 10 No. 9 - 78 ",
-          ciudad: "BOGOTA",
-          correo: "SANTIAGOMARTINEZ@GMAIL.COM",
-          detalle: "",
-        },
-        {
-          documento: 199823874,
-          tipo_documento: "CC",
-          razon_social: "CARLOS SANCHEZ",
-          contacto: "CARLOS SANCHEZ",
-          telefono: 3054442279,
-          direccion: "Carrera 56A No. 51 - 81",
-          ciudad: "BOGOTA",
-          correo: "CARLOSSANCHEZ@GMAIL.COM",
+          documento: 0,
+          tipo_documento: "N/A",
+          razon_social: "N/A",
+          contacto: "N/A",
+          telefono: 0,
+          direccion: "N/A",
+          ciudad: "N/A",
+          correo: "N/A",
           detalle: "",
         },
       ],
     };
   },
+  beforeCreate: function(){
+    axios.get("http://localhost:8000/cliente/registroGetAll")
+    .then(respuesta=>{
+      this.database_clientes=respuesta.data;
+    })
+    .catch(error=>{
+      console.log(error)
+      alert("no hay clientes en la base" + error.response.status)
+    })
+  }  
 };
 </script>
 

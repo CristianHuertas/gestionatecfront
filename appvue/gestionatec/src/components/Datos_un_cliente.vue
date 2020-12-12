@@ -5,39 +5,39 @@
       <table id="cliente">
         <tr>
           <th>Documento:</th>
-          <td>{{ database_clientes[0].documento }}</td>
+          <td>{{ database_clientes.documento }}</td>
         </tr>
         <tr>
           <th>Razon Social:</th>
-          <td>{{ database_clientes[0].tipo_documento }}</td>
+          <td>{{ database_clientes.tipo_documento }}</td>
         </tr>
         <tr>
           <th>Contacto:</th>
-          <td>{{ database_clientes[0].razon_social }}</td>
+          <td>{{ database_clientes.razon_social }}</td>
         </tr>
         <tr>
           <th>Telefono:</th>
-          <td>{{ database_clientes[0].telefono }}</td>
+          <td>{{ database_clientes.telefono }}</td>
         </tr>
         <tr>
           <th>Direccion:</th>
-          <td>{{ database_clientes[0].direccion }}</td>
+          <td>{{ database_clientes.direccion }}</td>
         </tr>
         <tr>
           <th>Ciudad:</th>
-          <td>{{ database_clientes[0].ciudad }}</td>
+          <td>{{ database_clientes.ciudad }}</td>
         </tr>
         <tr>
           <th>Correo:</th>
-          <td>{{ database_clientes[0].correo }}</td>
+          <td>{{ database_clientes.correo }}</td>
         </tr>
         <tr>
           <th>Detalle:</th>
-          <td>{{ database_clientes[0].detalle }}</td>
+          <td>{{ database_clientes.detalle }}</td>
         </tr>
       </table>
-      <button>Editar </button>
-      <button>Guardar </button>
+      <button v-if=0>Editar </button>
+      <button v-if=0>Guardar </button>
 
     </div>
   </div>
@@ -47,25 +47,40 @@
 
 
 <script>
+import axios from "axios"
+
 export default {
   name: "Datos_un_cliente",
   data: function () {
     return {
-      database_clientes: [
+      id: 0,
+      database_clientes: 
         {
-          documento: 800433422,
-          tipo_documento: "NIT",
-          razon_social: "ÉXITO MEDELLIN",
-          contacto: "SANTIAGO MARTINEZ",
-          telefono: 3169161138,
-          direccion: "Calle 10 No. 9 - 78 ",
-          ciudad: "BOGOTA",
-          correo: "SANTIAGOMARTINEZ@GMAIL.COM",
+          documento: 0,
+          tipo_documento: "N/A",
+          razon_social: "N/A",
+          contacto: "N/A",
+          telefono: 0,
+          direccion: "N/A",
+          ciudad: "N/A",
+          correo: "N/A",
           detalle: "",
         },
-      ],
     };
   },
+  beforeCreate: function(){
+    this.id=localStorage.getItem("idbusqueda")
+   
+    axios.get("http://localhost:8000/cliente/registroGet/"+this.id)
+    .then(respuesta=>{
+      this.database_clientes=respuesta.data;
+    })
+    .catch(error=>{
+      console.log(error)
+      alert("cliente con documento "+ this.id +" no existe " + error.response.status)
+      this.$router.push({name: "menu"});
+    })
+  }
 };
 </script>
 
@@ -98,7 +113,7 @@ export default {
 
 
 #d5 button{
-  background: #133264;
+  background: #456C99;
   border: 0;
   border-radius: 3px;
   color: white;

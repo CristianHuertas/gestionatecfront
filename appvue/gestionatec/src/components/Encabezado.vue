@@ -1,14 +1,15 @@
 <template>
   <div id="encabezado" class="encabezado">
     <ul>
-      <li><img src="./img/logo_size_invert.jpg" id="logo"/></li>
-      <!-- <li>
+      <li><img src="./img/logo_size_invert2.jpg" id="logo"/></li>
+ 
+      <li>
+        <h1>{{ nombre_principal }}</h1>
+      </li>
+      <li>
         <button id="regresar_menu" v-on:click="regresar_menu">
           Regresar Al Menú
         </button>
-      </li> -->
-      <li>
-        <h1>{{ nombre_principal }}</h1>
       </li>
       <li>
         <button id="cerrar_sesion" v-on:click="cerrar_sesion">
@@ -24,7 +25,9 @@ export default {
   name: "Encabezado",
   methods: {
     regresar_menu: function () {
-      alert("regresó al menú");
+      if(this.$router.name != "menu"){
+        this.$router.push({name: "menu"});
+      }
     },
     cerrar_sesion: function () {
       alert("Cerró sesión");
@@ -32,7 +35,7 @@ export default {
   },
   data: function () {
     return {
-      nombre_principal: "Menú De Inicio",
+      nombre_principal: "Gestionatec",
     };
   },
 };
@@ -50,7 +53,7 @@ export default {
 
 #regresar_menu {
   /* ocultar boton de regresar al menu */
-  display: none;
+/*   display: none; */
   margin: 0% 0%;
 }
 
@@ -98,12 +101,12 @@ export default {
 #encabezado ul li h1 {
   margin-left: 0%;
   margin-right: auto;
-  color: black;
+  color: white;
   font-size: 50px;
 }
 
 #encabezado ul button {
-  background: #133264;
+  background: #456C99;
   border: 0;
   border-radius: 3px;
   color: white;

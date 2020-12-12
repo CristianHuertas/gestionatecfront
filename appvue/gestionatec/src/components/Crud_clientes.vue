@@ -5,11 +5,11 @@
       <form>
         <label for="nit"><b>NIT Cliente:</b></label>
         <!-- <input/> -->
-        <input type="number" id="nit" placeholder="Solo datos numericos" minlength="8" maxlength="10" required/>        
+        <input v-model="idbusqueda" type="number" id="nit" placeholder="Solo datos numericos" minlength="8" maxlength="10" required/>        
       </form>
       
-      <button id="buscar" @click="cambiar_estado">Buscar </button>      
-      <button class="crud" @click="ocultar_components">Crear Cliente</button>
+      <button id="buscar" @click="cambiar_estado">{{BuscarEtiqueta}} </button>      
+      <button class="crud" @click="ocultar_components">Crear/moificar Cliente</button>
       <button class="crud">Eliminar Cliente</button>
       
       
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import Crear_cliente from '../Crear_cliente.vue';
+import Crear_cliente from './Crear_cliente.vue';
 import Base_clientes from "./Base_clientes.vue";
 import Datos_un_cliente from "./Datos_un_cliente.vue";
 import Pie_pagina from './Pie_pagina.vue';
@@ -38,16 +38,28 @@ export default {
   components: { Base_clientes, Datos_un_cliente, Pie_pagina, Crear_cliente },
   data() {
     return {
+    BuscarEtiqueta: "buscar",
     estado1: true,
     estado2: false,
     estado3: false,
+    idbusqueda: 0,
     }
   },
   methods: {
     cambiar_estado(){
-      this.estado1 = false;
-      this.estado2 = true;
-      this.estado3 = false;
+      if(this.estado2===true){
+        this.BuscarEtiqueta= "buscar";
+        this.estado1 = true;
+        this.estado2 = false;
+        this.estado3 = false;
+      }
+      else{
+        this.BuscarEtiqueta= "volver";
+        this.estado1 = false;
+        this.estado2 = true;
+        this.estado3 = false;
+        localStorage.setItem("idbusqueda", this.idbusqueda);
+      }
     },
     ocultar_components(){
       this.estado1 = false;
@@ -87,7 +99,7 @@ export default {
 }
 
 #buscar {
-  background: #133264;
+  background: #456C99;
   border: 10;
   border-radius: 10px;
   color: white;
@@ -98,7 +110,7 @@ export default {
   margin-right: 10%;
 }
 .crud{
-  background: #133264;
+  background: #456C99;
   border: 10;
   border-radius: 10px;
   color: white;

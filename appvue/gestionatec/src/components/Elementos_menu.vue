@@ -6,8 +6,10 @@
           <li>
             <button id="clientes" class="boton_principal">Clientes</button>
           </li>
-          <li><button id="registro">Registro</button></li>
-          <li><button id="transacciones">Transacciones</button></li>
+          <li><button id="registro" v-on:click="registro">
+            Registro
+            </button></li>
+          <li><button id="transacciones">Transacciones<p class="construccion">(en construccion)</p></button></li>
         </ul>
       </div>
 
@@ -16,8 +18,8 @@
           <li>
             <button id="productos" class="boton_principal">Productos <p class="construccion">(en construccion)</p></button>
           </li>
-          <li><button id="inventario">Inventario</button></li>
-          <li><button id="puntos_venta">Puntos De Venta</button></li>
+          <li><button id="inventario">Inventario<p class="construccion">(en construccion)</p></button></li>
+          <li><button id="puntos_venta">Puntos De Venta<p class="construccion">(en construccion)</p></button></li>
         </ul>
       </div>
 
@@ -28,9 +30,9 @@
               Análisis De Datos <p class="construccion">(en construccion)</p>
             </button>
           </li>
-          <li><button id="analisis_ventas">Análisis De Ventas</button></li>
+          <li><button id="analisis_ventas">Análisis De Ventas<p class="construccion">(en construccion)</p></button></li>
           <li>
-            <button id="analisis_inventario">Análisis De Inventario</button>
+            <button id="analisis_inventario">Análisis De Inventario<p class="construccion">(en construccion)</p></button>
           </li>
         </ul>
       </div>
@@ -42,6 +44,13 @@
 <script>
 export default {
   name: "Elementos_menu",
+  methods:{
+    registro: function(){
+      if(this.$router.name != "crudClientes"){
+        this.$router.push({name: "crudClientes"});
+      }
+    }
+  }
 };
 </script>
 
@@ -93,7 +102,7 @@ ul li {
 }
 
 button {
-  background: #133264;
+  background:#456C99;
   border: 10;
   border-radius: 10px;
   color: white;
@@ -105,7 +114,7 @@ button {
 
 .construccion{
   font-size: 14px;
-  color: rgb(56, 56, 56);
+  color: rgb(10, 10, 10);
 }
 </style>
 
