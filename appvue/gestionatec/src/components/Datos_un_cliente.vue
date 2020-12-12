@@ -8,7 +8,7 @@
           <td>{{ database_clientes[0].documento }}</td>
         </tr>
         <tr>
-          <th>Razon_social:</th>
+          <th>Razon Social:</th>
           <td>{{ database_clientes[0].tipo_documento }}</td>
         </tr>
         <tr>
@@ -48,7 +48,7 @@
 
 <script>
 export default {
-  name: "Crea_cliente",
+  name: "Datos_un_cliente",
   data: function () {
     return {
       database_clientes: [

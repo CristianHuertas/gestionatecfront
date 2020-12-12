@@ -50,7 +50,7 @@
 
 <script>
 export default {
-  name: "Busqueda_clientes",
+  name: "Base_clientes",
   data: function () {
     return {
       database_clientes: [
@@ -108,7 +108,7 @@ div table td {
 
 #d3 {
   margin: 5px auto;
-  width: 1200px;
+  width: 80%;
   height: auto;
   background-color: rgb(238, 238, 238);
 }
