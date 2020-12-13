@@ -3,14 +3,15 @@
     <div id="crud">
       
       <form>
-        <label for="nit"><b>NIT Cliente:</b></label>
+        <label for="nit"><b>NIT/Cedula Cliente:</b></label>
         <!-- <input/> -->
         <input v-model="idbusqueda" type="number" id="nit" placeholder="Solo datos numericos" minlength="8" maxlength="10" required/>        
       </form>
       
-      <button id="buscar" @click="cambiar_estado">{{BuscarEtiqueta}} </button>      
-      <button class="crud" @click="ocultar_components">Crear/moificar Cliente</button>
-      <button class="crud">Eliminar Cliente</button>
+      <button id="buscar" @click="cambiar_estado">{{BuscarEtiqueta}} </button>   
+      <button v-on:click="eliminarCliente" id="eliminar">Eliminar Cliente</button>   
+      <button class="crud" @click="ocultar_components">{{crearEtiqueta}}</button>
+      
       
       
     </div>
@@ -32,6 +33,7 @@ import Crear_cliente from './Crear_cliente.vue';
 import Base_clientes from "./Base_clientes.vue";
 import Datos_un_cliente from "./Datos_un_cliente.vue";
 import Pie_pagina from './Pie_pagina.vue';
+import axios from "axios"
 
 export default {
   name: "Crud_clientes",
@@ -39,6 +41,7 @@ export default {
   data() {
     return {
     BuscarEtiqueta: "buscar",
+    crearEtiqueta: "Crear/moificar Cliente",
     estado1: true,
     estado2: false,
     estado3: false,
@@ -62,11 +65,35 @@ export default {
       }
     },
     ocultar_components(){
-      this.estado1 = false;
-      this.estado2 = false;
-      this.estado3 = true;
+      if(this.estado3===true){
+        this.crearEtiqueta= "Crear/moificar Cliente";
+        this.estado1 = true;
+        this.estado2 = false;
+        this.estado3 = false;
+      }
+      else{
+        this.crearEtiqueta= "volver";
+        this.estado1 = false;
+        this.estado2 = false;
+        this.estado3 = true;
+      }
+    },
+    eliminarCliente: function(){
+      
+      axios.delete("http://localhost:8000/cliente/registroDel/"+String(this.idbusqueda))
+      .then(respuesta=>{
+        console.log(respuesta.data);
+        alert("se elimino el cliente con id "+this.idbusqueda+" de forma exitosa")
+        this.$router.push({name: "menu"});      
+      })
+      .catch(error=>{
+        console.log(error)
+        alert("El cliente no existe" + error.response.status)
+        this.$router.push({name: "menu"});     
+      }) 
     }
   }
+
 };
 </script>
 
@@ -99,6 +126,18 @@ export default {
 }
 
 #buscar {
+  background: #456C99;
+  border: 10;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  font-size: 10px;
+  padding: 8px 25px;
+  margin: 0px;
+  margin-right: 1%;
+}
+
+#eliminar{
   background: #456C99;
   border: 10;
   border-radius: 10px;

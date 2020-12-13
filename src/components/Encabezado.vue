@@ -107,6 +107,7 @@ export default {
 
 #encabezado ul button {
   background: #456C99;
+  border-radius: 10px;
   border: 0;
   border-radius: 3px;
   color: white;

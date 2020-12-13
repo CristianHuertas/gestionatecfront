@@ -16,7 +16,7 @@
           <th>Correo</th>
           <th>Detalle</th>
         </tr>
-        <tr v-for="cliente in database_clientes">
+        <tr v-for="cliente in database_clientes" v-bind:key="cliente.id">
           <td>{{ cliente.documento }}</td>
           <td>{{ cliente.tipo_documento }}</td>
           <td>{{ cliente.razon_social }}</td>
