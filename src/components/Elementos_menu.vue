@@ -37,13 +37,16 @@
         </ul>
       </div>
     </div>
+   <Pie_pagina/>
   </div>
 </template>
 
 
 <script>
+import Pie_pagina from './Pie_pagina.vue';
 export default {
   name: "Elementos_menu",
+  components: {Pie_pagina,},
   methods:{
     registro: function(){
       if(this.$router.name != "crudClientes"){

@@ -57,13 +57,13 @@ export default {
       database_clientes: 
         {
           documento: 0,
-          tipo_documento: "N/A",
-          razon_social: "N/A",
-          contacto: "N/A",
+          tipo_documento: "",
+          razon_social: "",
+          contacto: "",
           telefono: 0,
-          direccion: "N/A",
-          ciudad: "N/A",
-          correo: "N/A",
+          direccion: "",
+          ciudad: "",
+          correo: "",
           detalle: "",
         },
     };
@@ -77,7 +77,7 @@ export default {
     })
     .catch(error=>{
       console.log(error)
-      alert("cliente con documento "+ this.id +" no existe " + error.response.status)
+      alert("cliente no existe " + error.response.status)
       this.$router.push({name: "menu"});
     })
   }

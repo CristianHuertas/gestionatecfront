@@ -42,17 +42,17 @@ export default {
   data: function () {
     return {
       database_clientes: [
-        {
+/*         {
           documento: 0,
-          tipo_documento: "N/A",
-          razon_social: "N/A",
-          contacto: "N/A",
+          tipo_documento: "",
+          razon_social: "",
+          contacto: "",
           telefono: 0,
-          direccion: "N/A",
-          ciudad: "N/A",
-          correo: "N/A",
+          direccion: "",
+          ciudad: "",
+          correo: "",
           detalle: "",
-        },
+        }, */
       ],
     };
   },
