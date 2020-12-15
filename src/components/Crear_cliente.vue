@@ -82,7 +82,7 @@ export default {
           detalle: this.detalle
         }
         console.log(this.datosJSON);
-        axios.post("http://localhost:8000/cliente/registroSave/", this.datosJSON)
+        axios.post("https://gestionatec.herokuapp.com/cliente/registroSave/", this.datosJSON)
         .then(respuesta=>{
           console.log(respuesta.data);
           alert("operacion exitosa")

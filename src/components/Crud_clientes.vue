@@ -80,7 +80,7 @@ export default {
     },
     eliminarCliente: function(){
       
-      axios.delete("http://localhost:8000/cliente/registroDel/"+String(this.idbusqueda))
+      axios.delete("https://gestionatec.herokuapp.com/cliente/registroDel/"+String(this.idbusqueda))
       .then(respuesta=>{
         console.log(respuesta.data);
         alert("se elimino el cliente con id "+this.idbusqueda+" de forma exitosa")

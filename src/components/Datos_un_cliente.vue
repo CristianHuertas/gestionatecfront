@@ -71,7 +71,7 @@ export default {
   beforeCreate: function(){
     this.id=localStorage.getItem("idbusqueda")
    
-    axios.get("http://localhost:8000/cliente/registroGet/"+this.id)
+    axios.get("https://gestionatec.herokuapp.com/cliente/registroGet/"+this.id)
     .then(respuesta=>{
       this.database_clientes=respuesta.data;
     })
